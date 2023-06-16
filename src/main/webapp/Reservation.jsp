@@ -51,6 +51,56 @@ li a:hover:not(.current) {
 	background-color: #CD853F;
 	color: white;
 }
+
+/* 캘린더 스타일 */
+.ui-datepicker {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	width: 200px;
+	padding: 10px;
+	background: linear-gradient(to bottom, #e2e2e2, #ffffff);
+	border-radius: 10px;
+}
+
+.ui-datepicker-header {
+	background-color: #333;
+	color: #fff;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.ui-datepicker-title {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+	cursor: pointer;
+	background-color: #666;
+	color: #fff;
+	padding: 2px 5px;
+	border-radius: 5px;
+}
+
+.ui-datepicker-prev:hover, .ui-datepicker-next:hover {
+	background-color: #888;
+}
+
+.ui-datepicker-calendar {
+	background-color: #fff;
+}
+
+.ui-datepicker-calendar td {
+	padding: 3px;
+}
+
+.ui-datepicker-calendar .ui-state-default {
+	cursor: pointer;
+}
+
+.ui-datepicker-calendar .ui-state-default:hover {
+	background-color: #f5f5f5;
+}
 </style>
 </head>
 <body>
@@ -103,6 +153,7 @@ li a:hover:not(.current) {
 	<!-- 영화 날짜 선택 -->
 	<h3>영화 날짜 선택</h3>
 	<input type="text" id="datepicker" readonly>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- 영화 시간 선택 -->

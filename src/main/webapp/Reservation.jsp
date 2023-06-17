@@ -101,12 +101,46 @@ li a:hover:not(.current) {
 .ui-datepicker-calendar .ui-state-default:hover {
 	background-color: #f5f5f5;
 }
+
+.time-input {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.booking-button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #f44336;
+	color: white;
+	font-weight: bold;
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	cursor: pointer;
+}
+/* 16x16 표 스타일 */
+.table-16x16 {
+	display: grid;
+	grid-template-columns: repeat(16, 20px); /* 열 간격 조정 */
+	gap: 4px; /* 행 간격 조정 */
+}
+
+/* 셀 스타일 */
+.table-16x16-cell {
+	width: 20px;
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 4px; /* 둥글게 모서리만 가진 네모 설정 */
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
-	<h1>오른쪽 메뉴 설정</h1>
+	<h1 id="navigation">오른쪽 메뉴 설정</h1>
 	<!-- 네비게이션 바 -->
-	<ul>
+	<ul id="navigation">
 		<li><img src="C:/Users/COMPUTER/Desktop"><a href="Main.jsp">로고</a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
@@ -125,7 +159,36 @@ li a:hover:not(.current) {
 			</li>
 		</c:forEach>
 	</ul>
-	<p id="selectedMovie"></p>
+	<div style="display: none">
+		<p id="selectedMovie"></p>
+	</div>
+	<!-- 영화 날짜 선택 -->
+	<h3>영화 날짜 선택</h3>
+	<input type="text" id="datepicker" readonly>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- 영화 시간 선택 -->
+	<h3>영화 시간 선택</h3>
+	<li style="list-style-type: none;"><input type="time" id="myInput"
+		placeholder="시간 선택" class="time-input"></li>
+	<!-- 16x16 표 -->
+	<div class="table-16x16">
+		<c:forEach var="row" begin="1" end="10">
+			<c:forEach var="column" begin="1" end="16">
+				<c:choose>
+					<c:when test="${column eq '1'}">
+						<c:out value="${64 + row}"></c:out>
+					</c:when>
+					<c:otherwise>
+						<div class="table-16x16-cell"></div>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</c:forEach>
+	</div>
+	<li style="list-style-type: none;"><a href="#" id="myLink"
+		class="booking-button">영화예매</a></li>
 	<script>
 		// 영화 목록을 동적으로 생성하여 HTML에 추가
 		var movieListElement = document.getElementById("movieList");
@@ -143,20 +206,6 @@ li a:hover:not(.current) {
 						+ genre + " 제한연령: " + age + "이상";
 			});
 		});
-	</script>
-	<!-- 영화 날짜 선택 -->
-	<h3>영화 날짜 선택</h3>
-	<input type="text" id="datepicker" readonly>
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<!-- 영화 시간 선택 -->
-	<h3>영화 시간 선택</h3>
-	<li style="list-style-type: none;"><input type="time" id="myInput"
-		placeholder="시간 선택"></li>
-	<li style="list-style-type: none;"><a href="#" id="myLink">영화예매</a>
-	</li>
-	<script>
 		// <a> 요소를 클릭했을 때 실행되는 함수를 정의합니다.
 		document.getElementById("myLink").onclick = function() {
 			// 시간 입력란에서 입력된 값을 가져옵니다.
@@ -174,6 +223,12 @@ li a:hover:not(.current) {
 			// 한국어 알림 창으로 값을 띄웁니다.
 			alert("선택된 영화: " + selectedMovie + "\n선택된 시간은 " + inputValue
 					+ "입니다.\n선택된 날짜는 " + formattedDate + "입니다.");
+			// 네비게이션 바를 제외한 나머지 요소를 제거합니다.
+			var elementsToRemove = document
+					.querySelectorAll('body > :not(#navigation)');
+			elementsToRemove.forEach(function(element) {
+				element.remove();
+			});
 		};
 
 		$(document).ready(function() {
@@ -181,6 +236,17 @@ li a:hover:not(.current) {
 				dateFormat : "yy-mm-dd", // 선택된 날짜 형식
 				minDate : 0, // 오늘 이전 날짜는 선택 불가능
 				maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
+			});
+		});
+
+		// 16x16 표의 각 셀 요소들을 선택합니다.
+		var cells = document.querySelectorAll('.table-16x16-cell');
+
+		// 각 셀에 클릭 이벤트 리스너를 추가합니다.
+		cells.forEach(function(cell) {
+			cell.addEventListener('click', function() {
+				// 클릭된 셀에 대한 동작을 수행합니다.
+				cell.style.backgroundColor = 'red';
 			});
 		});
 	</script>

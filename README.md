@@ -2,7 +2,6 @@
 Iot 빅데이터 프로젝트
 
 h2
-
 version - 2.1.214
 https://mvnrepository.com/artifact/com.h2database/h2
 

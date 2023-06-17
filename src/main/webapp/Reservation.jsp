@@ -107,15 +107,21 @@ li a:hover:not(.current) {
 	<h1>오른쪽 메뉴 설정</h1>
 	<!-- 네비게이션 바 -->
 	<ul>
-		<li><img src="C:/Users/COMPUTER/Desktop">로고</li>
+		<li><img src="C:/Users/COMPUTER/Desktop"><a href="Main.jsp">로고</a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
-		<li><a href="Reservation.jsp">영화예매</a></li>
+		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>
 	</ul>
 
 	<!-- 영화 선택 -->
 	<h3>영화 선택</h3>
-	<ul id="movieList"></ul>
+	<ul id="movieList">
+		<c:forEach var="m" items="${moviesReservation}">
+			<li class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
+				<a>${m.movietitle}, ${m.genre}, ${m.age}</a>
+			</li>
+		</c:forEach>
+	</ul>
 	<p id="selectedMovie"></p>
 	<script>
 		// 영화 데이터

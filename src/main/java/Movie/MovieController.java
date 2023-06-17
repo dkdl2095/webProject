@@ -43,7 +43,7 @@ public class MovieController extends HttpServlet {
 
 		// action 파라미터 없이 접근한 경우
 		if (action == null) {
-			action = "listMovies";
+			action = "listMoviesMain";
 		}
 		
 		try {
@@ -70,7 +70,7 @@ public class MovieController extends HttpServlet {
 		}
 	}
 	
-	public String listMovies(HttpServletRequest request) {
+	public String listMoviesMain(HttpServletRequest request) {
 		List<Movie> list;
 		try {
 			list = dao.getAll();
@@ -81,6 +81,19 @@ public class MovieController extends HttpServlet {
 			request.setAttribute("error", "목록이 정상적으로 처리되지 않았습니다!!");
 		}
 		return "Main.jsp";
+	}
+	
+	public String listMoviesReservation(HttpServletRequest request) {
+		List<Movie> list;
+		try {
+			list = dao.getAll();
+			request.setAttribute("moviesReservation", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("목록 생성 과정에서 문제 발생!!");
+			request.setAttribute("error", "목록이 정상적으로 처리되지 않았습니다!!");
+		}
+		return "Reservation.jsp";
 	}
 
 	public String getMovies(HttpServletRequest request) {
@@ -95,7 +108,7 @@ public class MovieController extends HttpServlet {
 		}
 		return "Main.jsp";
 	}
-	
+
 	public String addMovie(HttpServletRequest request) {
 		Movie n = new Movie();
 		try {
@@ -112,7 +125,7 @@ public class MovieController extends HttpServlet {
 			e.printStackTrace();
 			ctx.log("영화 추가 과정에서 문제 발생!!");
 			request.setAttribute("error", "영화가 정상적으로 등록되지 않았습니다!!");
-			return listMovies(request);
+			return listMoviesMain(request);
 		}
 		return "redirect:/movieControl?action=listMovies";
 	}

@@ -43,10 +43,10 @@
 	<h1>오른쪽 메뉴 설정</h1>
 	<!-- 네비게이션 바 -->
 	<ul>
-		<li><img src="C:/Users/COMPUTER/Desktop">로고</li>
+		<li><img src="C:/Users/COMPUTER/Desktop"><a href="Main.jsp">로고</a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
-		<li><a href="Reservation.jsp">영화예매</a></li>
+		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>
 	</ul>
 	<div>
 		<input type="text" placeholder="검색어 입력">

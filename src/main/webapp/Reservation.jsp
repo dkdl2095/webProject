@@ -11,13 +11,15 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- Script -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>5조</title>
 <style>
 ul {
@@ -135,6 +137,10 @@ li a:hover:not(.current) {
 	border-radius: 4px; /* 둥글게 모서리만 가진 네모 설정 */
 	cursor: pointer;
 }
+
+.seat-number {
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -146,7 +152,6 @@ li a:hover:not(.current) {
 		<li><a href="Review.jsp">평점</a></li>
 		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>
 	</ul>
-
 	<!-- 영화 선택 -->
 	<h3>영화 선택</h3>
 	<ul id="movieList">
@@ -165,14 +170,15 @@ li a:hover:not(.current) {
 	<!-- 영화 날짜 선택 -->
 	<h3>영화 날짜 선택</h3>
 	<input type="text" id="datepicker" readonly>
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- 영화 시간 선택 -->
 	<h3>영화 시간 선택</h3>
-	<li style="list-style-type: none;"><input type="time" id="myInput"
-		placeholder="시간 선택" class="time-input"></li>
-	<!-- 16x16 표 -->
+	<li style="list-style-type: none;">
+		<input type="time" id="myInput" placeholder="시간 선택" class="time-input">
+	</li>
+	<br>
+	<br>
+	<!-- 좌석 선택 -->
+	<h3>좌석 선택</h3>
 	<div class="table-16x16">
 		<c:forEach var="row" begin="1" end="10">
 			<c:forEach var="column" begin="1" end="16">
@@ -181,18 +187,27 @@ li a:hover:not(.current) {
 						<c:out value="${64 + row}"></c:out>
 					</c:when>
 					<c:otherwise>
-						<div class="table-16x16-cell"></div>
+						<div class="table-16x16-cell">
+							<span class="seat-number">${(row - 1) * 16 + column}</span>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 		</c:forEach>
 	</div>
+	<div id="selectedSeatsDiv" style="display: none"></div>
 	<li style="list-style-type: none;"><a href="#" id="myLink"
 		class="booking-button">영화예매</a></li>
 	<script>
 		// 영화 목록을 동적으로 생성하여 HTML에 추가
 		var movieListElement = document.getElementById("movieList");
 		var movieLinks = document.querySelectorAll(".movie-link"); // 모든 영화 링크 선택
+
+		// 좌석 선택을 저장할 변수
+		var selectedSeats = [];
+
+		// 좌석 셀 요소를 선택합니다.
+		var seatCells = document.querySelectorAll('.table-16x16-cell');
 
 		// 각 링크에 대해 클릭 이벤트 리스너 추가
 		movieLinks.forEach(function(link) {
@@ -206,6 +221,7 @@ li a:hover:not(.current) {
 						+ genre + " 제한연령: " + age + "이상";
 			});
 		});
+
 		// <a> 요소를 클릭했을 때 실행되는 함수를 정의합니다.
 		document.getElementById("myLink").onclick = function() {
 			// 시간 입력란에서 입력된 값을 가져옵니다.
@@ -220,10 +236,20 @@ li a:hover:not(.current) {
 			// 선택한 영화 정보를 가져옵니다.
 			var selectedMovie = document.getElementById("selectedMovie").textContent;
 
-			// 한국어 알림 창으로 값을 띄웁니다.
-			alert("선택된 영화: " + selectedMovie + "\n선택된 시간은 " + inputValue
-					+ "입니다.\n선택된 날짜는 " + formattedDate + "입니다.");
-			// 네비게이션 바를 제외한 나머지 요소를 제거합니다.
+			// 선택된 좌석 정보를 가져옵니다.
+			var selectedSeatsDiv = document.getElementById("selectedSeatsDiv").textContent;
+
+			// 알림 창에 메시지를 표시합니다.
+			alert("선택된 영화: " + selectedMovie + "\n" + "선택된 시간은 " + inputValue
+					+ "입니다." + "\n" + "선택된 날짜는 " + formattedDate + "입니다."
+					+ "\n" + "선택된 좌석: " + selectedSeatsDiv);
+			// 콘솔에 값을 출력합니다.
+			console.log("선택된 영화: " + selectedMovie);
+			console.log("선택된 시간은 " + inputValue + "입니다.");
+			console.log("선택된 날짜는 " + formattedDate + "입니다.");
+			console.log("선택된 좌석: " + selectedSeatsDiv);
+
+			// 네비게이션 바, 제목을 제외한 나머지 요소를 제거합니다.
 			var elementsToRemove = document
 					.querySelectorAll('body > :not(#navigation)');
 			elementsToRemove.forEach(function(element) {
@@ -239,14 +265,27 @@ li a:hover:not(.current) {
 			});
 		});
 
-		// 16x16 표의 각 셀 요소들을 선택합니다.
-		var cells = document.querySelectorAll('.table-16x16-cell');
-
 		// 각 셀에 클릭 이벤트 리스너를 추가합니다.
-		cells.forEach(function(cell) {
+		seatCells.forEach(function(cell) {
 			cell.addEventListener('click', function() {
 				// 클릭된 셀에 대한 동작을 수행합니다.
-				cell.style.backgroundColor = 'red';
+				if (cell.style.backgroundColor === 'red') {
+					// 이미 선택된 좌석일 경우, 선택을 해제합니다.
+					cell.style.backgroundColor = '';
+					var index = selectedSeats.indexOf(cell.textContent);
+					if (index > -1) {
+						selectedSeats.splice(index, 1);
+					}
+				} else {
+					// 선택되지 않은 좌석일 경우, 선택합니다.
+					cell.style.backgroundColor = 'red';
+					selectedSeats.push(cell.textContent);
+				}
+
+				// 선택된 좌석 정보를 업데이트합니다.
+				selectedSeatsDiv.textContent = selectedSeats.join(",");
+				selectedSeatsDiv.textContent = selectedSeatsDiv.textContent
+						.replace(/\s/g, '');
 			});
 		});
 	</script>

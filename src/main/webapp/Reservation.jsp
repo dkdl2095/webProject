@@ -152,14 +152,14 @@ li a:hover:not(.current) {
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- 영화 시간 선택 -->
 	<h3>영화 시간 선택</h3>
-	<li style="list-style-type: none;"><input type="text" id="myInput"
-		placeholder="시간 입력"></li>
+	<li style="list-style-type: none;"><input type="time" id="myInput"
+		placeholder="시간 선택"></li>
 	<li style="list-style-type: none;"><a href="#" id="myLink">영화예매</a>
 	</li>
 	<script>
 		// <a> 요소를 클릭했을 때 실행되는 함수를 정의합니다.
 		document.getElementById("myLink").onclick = function() {
-			// 텍스트 입력란에서 입력된 값을 가져옵니다.
+			// 시간 입력란에서 입력된 값을 가져옵니다.
 			var myInput = document.getElementById("myInput");
 			var inputValue = myInput.value;
 

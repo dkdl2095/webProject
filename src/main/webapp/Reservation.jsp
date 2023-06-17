@@ -117,44 +117,32 @@ li a:hover:not(.current) {
 	<h3>영화 선택</h3>
 	<ul id="movieList">
 		<c:forEach var="m" items="${moviesReservation}">
-			<li class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
-				<a>${m.movietitle}, ${m.genre}, ${m.age}</a>
+			<li
+				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
+				<a class="movie-link" data-title="${m.movietitle}"
+				data-genre="${m.genre}" data-age="${m.age}">영화제목:
+					${m.movietitle} 영화장르: ${m.genre} 제한연령: ${m.age}이상</a>
 			</li>
 		</c:forEach>
 	</ul>
 	<p id="selectedMovie"></p>
 	<script>
-		// 영화 데이터
-		var movies = [ {
-			title : "영화 1",
-			date : "2023-06-16"
-		}, {
-			title : "영화 2",
-			date : "2023-06-17"
-		}, {
-			title : "영화 3",
-			date : "2023-06-18"
-		} ];
-
 		// 영화 목록을 동적으로 생성하여 HTML에 추가
 		var movieListElement = document.getElementById("movieList");
-		for (var i = 0; i < movies.length; i++) {
-			var movie = movies[i];
-			var listItem = document.createElement("li");
-			var link = document.createElement("a");
-			link.href = "#";
-			link.textContent = movie.title + " - " + movie.date;
+		var movieLinks = document.querySelectorAll(".movie-link"); // 모든 영화 링크 선택
 
-			// 영화를 클릭했을 때 selectedMovie 요소에 선택한 영화 정보 설정
+		// 각 링크에 대해 클릭 이벤트 리스너 추가
+		movieLinks.forEach(function(link) {
 			link.addEventListener("click", function(event) {
 				var selectedMovieElement = document
 						.getElementById("selectedMovie");
-				selectedMovieElement.textContent = event.target.textContent;
+				var title = event.target.dataset.title;
+				var genre = event.target.dataset.genre;
+				var age = event.target.dataset.age;
+				selectedMovieElement.textContent = "영화제목: " + title + " 영화장르: "
+						+ genre + " 제한연령: " + age + "이상";
 			});
-
-			listItem.appendChild(link);
-			movieListElement.appendChild(listItem);
-		}
+		});
 	</script>
 	<!-- 영화 날짜 선택 -->
 	<h3>영화 날짜 선택</h3>
@@ -164,49 +152,37 @@ li a:hover:not(.current) {
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- 영화 시간 선택 -->
 	<h3>영화 시간 선택</h3>
-	<li style="list-style-type: none;"><select id="myComboBox">
-			<option value="value1">값 1</option>
-			<option value="value2">값 2</option>
-			<option value="value3">값 3</option>
-	</select></li>
+	<li style="list-style-type: none;"><input type="text" id="myInput"
+		placeholder="시간 입력"></li>
 	<li style="list-style-type: none;"><a href="#" id="myLink">영화예매</a>
-		<script>
-			// <a> 요소를 클릭했을 때 실행되는 함수를 정의합니다.
-			myLink.onclick = function() {
-				// 콤보박스에서 선택된 값을 가져옵니다.
-				var myComboBox = document.getElementById("myComboBox");
-				var selectedValue = myComboBox.value;
+	</li>
+	<script>
+		// <a> 요소를 클릭했을 때 실행되는 함수를 정의합니다.
+		document.getElementById("myLink").onclick = function() {
+			// 텍스트 입력란에서 입력된 값을 가져옵니다.
+			var myInput = document.getElementById("myInput");
+			var inputValue = myInput.value;
 
-				// 선택된 값에 따라 한국어로 나타내기 위한 객체를 정의합니다.
-				var koreanValues = {
-					value1 : "값 1",
-					value2 : "값 2",
-					value3 : "값 3"
-				};
+			// 선택된 날짜를 가져옵니다.
+			var selectedDate = $("#datepicker").datepicker("getDate");
+			var formattedDate = $.datepicker.formatDate("yy-mm-dd",
+					selectedDate);
 
-				// 한국어로 변환된 값을 가져옵니다.
-				var koreanValue = koreanValues[selectedValue];
+			// 선택한 영화 정보를 가져옵니다.
+			var selectedMovie = document.getElementById("selectedMovie").textContent;
 
-				// 선택된 날짜를 가져옵니다.
-				var selectedDate = $("#datepicker").datepicker("getDate");
-				var formattedDate = $.datepicker.formatDate("yy-mm-dd",
-						selectedDate);
+			// 한국어 알림 창으로 값을 띄웁니다.
+			alert("선택된 영화: " + selectedMovie + "\n선택된 시간은 " + inputValue
+					+ "입니다.\n선택된 날짜는 " + formattedDate + "입니다.");
+		};
 
-				// 선택한 영화 정보를 가져옵니다.
-				var selectedMovie = document.getElementById("selectedMovie").textContent;
-
-				// 한국어 알림 창으로 값을 띄웁니다.
-				alert("선택된 영화: " + selectedMovie + "\n선택된 값은 " + koreanValue
-						+ "입니다.\n선택된 날짜는 " + formattedDate + "입니다.");
-			};
-
-			$(document).ready(function() {
-				$("#datepicker").datepicker({
-					dateFormat : "yy-mm-dd", // 선택된 날짜 형식
-					minDate : 0, // 오늘 이전 날짜는 선택 불가능
-					maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
-				});
+		$(document).ready(function() {
+			$("#datepicker").datepicker({
+				dateFormat : "yy-mm-dd", // 선택된 날짜 형식
+				minDate : 0, // 오늘 이전 날짜는 선택 불가능
+				maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
 			});
-		</script></li>
+		});
+	</script>
 </body>
 </html>

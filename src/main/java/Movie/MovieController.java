@@ -1,6 +1,7 @@
 package Movie;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -138,5 +139,32 @@ public class MovieController extends HttpServlet {
 		filename = header.substring(start + 10, header.length() - 1);
 		ctx.log("파일명:" + filename);
 		return filename;
+	}
+	
+	// 날짜를 선택해서 jsp로 넘겨주는 함수 만들 예정 2023-06-18 00:32
+	public void getDate(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			
+			// 선택된 날짜 가져오기
+	        String selectedDate = request.getParameter("datepicker");
+
+	        // 선택된 날짜 유효성 검사
+	        if (selectedDate != null && !selectedDate.isEmpty()) {
+	            // 선택된 날짜를 처리하는 추가 작업 수행
+	            // 예: 데이터베이스에 저장, 다른 동작 수행 등
+
+	            // 선택된 날짜를 다음 페이지로 전달하기 위해 속성 설정
+	            request.setAttribute("selectedDate", selectedDate);
+
+	            // 다음 페이지로 이동
+	            request.getRequestDispatcher("다음 페이지 경로").forward(request, response);
+	        } else {
+	            out.println("올바른 날짜를 선택해주세요.");
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}   
 	}
 }

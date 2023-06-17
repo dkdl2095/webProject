@@ -169,12 +169,23 @@ li a:hover:not(.current) {
 	</div>
 	<!-- 영화 날짜 선택 -->
 	<h3>영화 날짜 선택</h3>
-	<input type="text" id="datepicker" readonly>
+	<form action="MovieDateServlet">
+		<input type="text" id="datepicker" name="datepicker" readonly>
+		<button type="submit">선택</button>
+	</form>
+	<script>
+		$(document).ready(function() {
+			$("#datepicker").datepicker({
+				dateFormat : "yy-mm-dd", // 선택된 날짜 형식
+				minDate : 0, // 오늘 이전 날짜는 선택 불가능
+				maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
+			});
+		});
+	</script>
 	<!-- 영화 시간 선택 -->
 	<h3>영화 시간 선택</h3>
-	<li style="list-style-type: none;">
-		<input type="time" id="myInput" placeholder="시간 선택" class="time-input">
-	</li>
+	<li style="list-style-type: none;"><input type="time" id="myInput"
+		placeholder="시간 선택" class="time-input"></li>
 	<br>
 	<br>
 	<!-- 좌석 선택 -->
@@ -256,15 +267,6 @@ li a:hover:not(.current) {
 				element.remove();
 			});
 		};
-
-		$(document).ready(function() {
-			$("#datepicker").datepicker({
-				dateFormat : "yy-mm-dd", // 선택된 날짜 형식
-				minDate : 0, // 오늘 이전 날짜는 선택 불가능
-				maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
-			});
-		});
-
 		// 각 셀에 클릭 이벤트 리스너를 추가합니다.
 		seatCells.forEach(function(cell) {
 			cell.addEventListener('click', function() {

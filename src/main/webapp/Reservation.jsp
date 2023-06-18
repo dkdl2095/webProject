@@ -171,7 +171,6 @@ li a:hover:not(.current) {
 	<h3>영화 날짜 선택</h3>
 	<form action="MovieDateServlet">
 		<input type="text" id="datepicker" name="datepicker" readonly>
-		<button type="submit">선택</button>
 	</form>
 	<script>
 		$(document).ready(function() {

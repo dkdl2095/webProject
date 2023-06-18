@@ -42,7 +42,7 @@
 <body>
 	<h1>오른쪽 메뉴 설정</h1>
 	<!-- 네비게이션 바 -->
-	<ul>
+	<ul id="navigation">
 		<li><img src="C:/Users/COMPUTER/Desktop"><a href="Main.jsp">로고</a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>

@@ -70,6 +70,31 @@ public class MovieDAO {
 			return m;
 		}
 	}
+	
+	public List<Movie> getMovietitle(String movietitle) throws SQLException {
+		Connection conn = open();
+		List<Movie> moviesList = new ArrayList<>();
+
+		// sql 문
+		String sql = "SELECT id, movietitle, PARSEDATETIME(opendate,'yyyy-MM-dd') as opendate, genre, age, photo from movie where movietitle like ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		movietitle = "%" + movietitle + "%";
+		pstmt.setString(1, movietitle);
+		ResultSet rs = pstmt.executeQuery();
+
+		rs.next();
+		try (conn; pstmt; rs) {
+			Movie m = new Movie();
+			m.setId(rs.getInt("id"));
+			m.setMovietitle(rs.getString("movietitle"));
+			m.setOpendate(rs.getDate("opendate"));
+			m.setGenre(rs.getString("genre"));
+			m.setAge(rs.getInt("age"));
+			m.setPhoto(rs.getString("photo"));
+			moviesList.add(m);
+			return moviesList;
+		}
+	}
 
 	public void addMovie(Movie m) throws Exception {
 		Connection conn = open();
@@ -108,8 +133,6 @@ public class MovieDAO {
 			if (pstmt.executeUpdate() == 0) {
 				throw new SQLException("DB에러");
 			}
-
 		}
-
 	}
 }

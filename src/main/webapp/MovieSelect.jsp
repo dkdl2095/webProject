@@ -70,7 +70,7 @@ li a:hover:not(.current) {
 	<h1>오른쪽 메뉴 설정</h1>
 	<!-- 네비게이션 바 -->
 	<ul id="navigation">
-		<li><a href="Main.jsp"><img src="C:/Users/COMPUTER/Desktop"></a></li>
+		<li><a href="Main.jsp"><img src="\Image\home.png"></a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
 		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>

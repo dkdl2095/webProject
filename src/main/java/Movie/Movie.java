@@ -46,5 +46,4 @@ public class Movie{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
 }

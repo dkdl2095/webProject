@@ -40,7 +40,7 @@
 </style>
 </head>
 <body>
-	<h1>오른쪽 메뉴 설정</h1>
+	<h1>영화 예매 및 리뷰 작성</h1>
 	<!-- 네비게이션 바 -->
 	<ul id="navigation">
 		<li><a href="Main.jsp"><img src="\Image\home.png"></a></li>

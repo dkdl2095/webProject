@@ -98,14 +98,15 @@ public class MovieDAO {
 
 	public void addMovie(Movie m) throws Exception {
 		Connection conn = open();
-		String sql = "insert into movie(movietitle, genre, age, photo) values(?,?,?,?)";
+		String sql = "insert into movie(MOVIETITLE ,OPENDATE, GENRE , AGE , PHOTO ) values(?, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		try (conn; pstmt) {
 			pstmt.setString(1, m.getMovietitle());
 			pstmt.setString(2, m.getGenre());
-			pstmt.setInt(3, m.getAge());
-			pstmt.setString(4, m.getPhoto());
+			pstmt.setDate(3, m.getOpendate());
+			pstmt.setInt(4, m.getAge());
+			pstmt.setString(5, m.getPhoto());
 			pstmt.executeUpdate();
 		}
 	}

@@ -50,9 +50,6 @@ public class MovieController extends HttpServlet {
 		try {
 			m = this.getClass().getMethod(action, HttpServletRequest.class);
 			view = (String) m.invoke(this, request);
-			
-			m = this.getClass().getMethod(action, HttpServletRequest.class);
-			view = (String) m.invoke(this, request);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
 			ctx.log("요청 action 없음!!");

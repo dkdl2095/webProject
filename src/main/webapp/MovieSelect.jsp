@@ -97,7 +97,14 @@ li a:hover:not(.current) {
 		<c:forEach var="m" items="${moviesSelect}">
 			<li
 				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
-				<a>영화제목: ${m.movietitle} 영화장르: ${m.genre} 제한연령: ${m.age}이상</a>
+				<div class="card" style="width: 18rem">
+					<img src="${m.photo}" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">${m.movietitle}</h5>
+						<p class="card-text">개봉일:${m.opendate}</p>
+							<p class="card-text">${m.genre}</p>
+					</div>
+				</div>
 			</li>
 		</c:forEach>
 	</ul>

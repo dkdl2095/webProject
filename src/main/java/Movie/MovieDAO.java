@@ -123,6 +123,57 @@ public class MovieDAO {
 			}
 		}
 	}
+	
+	public List<Reservation> getReservationAll() throws SQLException {
+		Connection conn = open();
+		List<Reservation> List = new ArrayList<>();
+		
+		// sql 문
+		String sql = "SELECT * from RESERVATION";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+
+		try (conn; pstmt; rs) {
+			while (rs.next()) {
+				Reservation r = new Reservation();
+				r.setId(rs.getInt("id"));
+				r.setMovietitle(rs.getString("movietitle"));
+				r.setDate(rs.getDate("date"));
+				r.setRdate(rs.getString("rdate"));
+				r.setTime(rs.getString("time"));
+				r.setSeat(rs.getString("seat"));
+				List.add(r);
+			}
+			return List;
+		}
+	}
+	
+	public void addReservation(String title, String time, String rdate, String seat) throws Exception {
+		Connection conn = open();
+		String sql = "insert into RESERVATION(movietitle, date, rdate, time, seat) values(?, current_timestamp(), ?, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		try (conn; pstmt) {
+			pstmt.setString(1, title);
+			pstmt.setString(2, rdate);
+			pstmt.setString(3, time);
+			pstmt.setString(4, seat);
+			pstmt.executeUpdate();
+		}
+	}
+	
+	public void delReservation(int id) throws Exception {
+		Connection conn = open();
+		String sql = "delete from RESERVATION where id= ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		try (conn; pstmt) {
+			pstmt.setInt(1, id);
+			if (pstmt.executeUpdate() == 0) {
+				throw new SQLException("DB에러");
+			}
+		}
+	}
 
 	public void updateMovie(int id) throws Exception {
 		Connection conn = open();

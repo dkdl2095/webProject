@@ -110,6 +110,19 @@ public class MovieController extends HttpServlet {
 		}
 		return "MovieSelect.jsp";
 	}
+	
+	public String listReservation(HttpServletRequest request) {
+		List<Reservation> list;
+		try {
+			list = dao.getReservationAll();
+			request.setAttribute("Reservation", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("목록 생성 과정에서 문제 발생!!");
+			request.setAttribute("error", "목록이 정상적으로 처리되지 않았습니다!!");
+		}
+		return "Reservation.jsp";
+	}
 
 	public String getMovies(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -143,6 +156,48 @@ public class MovieController extends HttpServlet {
 			return listMoviesMain(request);
 		}
 		return "redirect:/movieControl?action=listMovies";
+	}
+	
+	public String deleteMovie(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			dao.delReservation(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("삭제 과정에서 문제 발생!!");
+			request.setAttribute("error", "정상적으로 삭제되지 않았습니다!!");
+			return listMoviesMain(request);
+		}
+		return "redirect:/movieControl?action=listMovies";
+	}
+	
+	public String addReservation(HttpServletRequest request) {
+		String title = request.getParameter("movietitle");
+		String time = request.getParameter("time");
+		String rdate = request.getParameter("rdate");
+		String seat = request.getParameter("seat");
+		try {
+			dao.addReservation(title, time, rdate, seat);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("추가 과정에서 문제 발생!!");
+			request.setAttribute("error", "정상적으로 등록되지 않았습니다!!");
+			return listMoviesReservation(request);
+		}
+		return "redirect:/movieControl?action=listMoviesReservation";
+	}
+	
+	public String deleteReservation(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			dao.delReservation(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("삭제 과정에서 문제 발생!!");
+			request.setAttribute("error", "정상적으로 삭제되지 않았습니다!!");
+			return listMoviesReservation(request);
+		}
+		return "redirect:/movieControl?action=listMoviesReservation";
 	}
 	
 	private String getFilename(Part part) {

@@ -169,18 +169,7 @@ li a:hover:not(.current) {
 	</div>
 	<!-- 영화 날짜 선택 -->
 	<h3>영화 날짜 선택</h3>
-	<form action="MovieDateServlet">
-		<input type="text" id="datepicker" name="datepicker" readonly>
-	</form>
-	<script>
-		$(document).ready(function() {
-			$("#datepicker").datepicker({
-				dateFormat : "yy-mm-dd", // 선택된 날짜 형식
-				minDate : 0, // 오늘 이전 날짜는 선택 불가능
-				maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
-			});
-		});
-	</script>
+	<input type="text" id="datepicker" name="datepicker" readonly>
 	<!-- 영화 시간 선택 -->
 	<h3>영화 시간 선택</h3>
 	<li style="list-style-type: none;"><input type="time" id="myInput"
@@ -206,8 +195,14 @@ li a:hover:not(.current) {
 		</c:forEach>
 	</div>
 	<div id="selectedSeatsDiv" style="display: none"></div>
-	<li style="list-style-type: none;"><a href="#" id="myLink"
-		class="booking-button">영화예매</a></li>
+	<c:forEach var="m" items="${moviesReservation}">
+		<li style="list-style-type: none;"><a id="myLink"
+			class="booking-button">영화예매</a></li>
+	</c:forEach>
+	<c:forEach var="m" items="${Reservation}">
+		<li style="list-style-type: none;"><a href="#" id="del"
+			class="booking-button">영화예매취소</a></li>
+	</c:forEach>
 	<script>
 		// 영화 목록을 동적으로 생성하여 HTML에 추가
 		var movieListElement = document.getElementById("movieList");
@@ -249,22 +244,16 @@ li a:hover:not(.current) {
 			// 선택된 좌석 정보를 가져옵니다.
 			var selectedSeatsDiv = document.getElementById("selectedSeatsDiv").textContent;
 
-			// 알림 창에 메시지를 표시합니다.
-			alert("선택된 영화: " + selectedMovie + "\n" + "선택된 시간은 " + inputValue
-					+ "입니다." + "\n" + "선택된 날짜는 " + formattedDate + "입니다."
-					+ "\n" + "선택된 좌석: " + selectedSeatsDiv);
 			// 콘솔에 값을 출력합니다.
 			console.log("선택된 영화: " + selectedMovie);
-			console.log("선택된 시간은 " + inputValue + "입니다.");
 			console.log("선택된 날짜는 " + formattedDate + "입니다.");
+			console.log("선택된 시간은 " + inputValue + "입니다.");
 			console.log("선택된 좌석: " + selectedSeatsDiv);
 
-			// 네비게이션 바, 제목을 제외한 나머지 요소를 제거합니다.
-			var elementsToRemove = document
-					.querySelectorAll('body > :not(#navigation)');
-			elementsToRemove.forEach(function(element) {
-				element.remove();
-			});
+			var url = "movieControl?action=addReservation&movietitle="
+					+ selectedMovie + "&rdate=" + formattedDate + "&time="
+					+ inputValue + "&seat=" + selectedSeatsDiv;
+			location.href = url;
 		};
 		// 각 셀에 클릭 이벤트 리스너를 추가합니다.
 		seatCells.forEach(function(cell) {
@@ -289,6 +278,23 @@ li a:hover:not(.current) {
 						.replace(/\s/g, '');
 			});
 		});
+
+		$(document).ready(function() {
+			$("#datepicker").datepicker({
+				dateFormat : "yy-mm-dd", // 선택된 날짜 형식
+				minDate : 0, // 오늘 이전 날짜는 선택 불가능
+				maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
+			});
+		});
+
+		document.getElementById("del").onclick = function() {
+			// 네비게이션 바, 제목을 제외한 나머지 요소를 제거합니다.
+			var elementsToRemove = document
+					.querySelectorAll('body > :not(#navigation)');
+			elementsToRemove.forEach(function(element) {
+				element.style.display = "none";
+			});
+		}
 	</script>
 </body>
 </html>

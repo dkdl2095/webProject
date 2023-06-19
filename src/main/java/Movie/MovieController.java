@@ -19,7 +19,7 @@ import javax.servlet.http.Part;
 import org.apache.commons.beanutils.BeanUtils;
 
 @WebServlet("/movieControl")
-@MultipartConfig(maxFileSize = 1024 * 1024 * 2, location = "C:/Temp/img")
+@MultipartConfig(maxFileSize = 1024 * 1024 * 2, location = "/Movie2/src/main/webapp/Image")
 public class MovieController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MovieDAO dao;

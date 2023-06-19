@@ -29,8 +29,8 @@ public class test extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        out.println("이름 : " + username + "<br>");
-        out.println("나이 : " + password + "<br>");
+        out.println("아이디 : " + username + "<br>");
+        out.println("비밀번호 : " + password + "<br>");
 	}
 
 }

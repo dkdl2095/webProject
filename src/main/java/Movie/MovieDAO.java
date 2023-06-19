@@ -129,7 +129,7 @@ public class MovieDAO {
 		List<Reservation> List = new ArrayList<>();
 		
 		// sql 문
-		String sql = "SELECT * from RESERVATION";
+		String sql = "SELECT id, movietitle, date, rdate, time, seat from RESERVATION";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 

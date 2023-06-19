@@ -110,19 +110,6 @@ public class MovieController extends HttpServlet {
 		}
 		return "MovieSelect.jsp";
 	}
-	
-	public String listReservation(HttpServletRequest request) {
-		List<Reservation> list;
-		try {
-			list = dao.getReservationAll();
-			request.setAttribute("Reservation", list);
-		} catch (Exception e) {
-			e.printStackTrace();
-			ctx.log("목록 생성 과정에서 문제 발생!!");
-			request.setAttribute("error", "목록이 정상적으로 처리되지 않았습니다!!");
-		}
-		return "Reservation.jsp";
-	}
 
 	public String getMovies(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));

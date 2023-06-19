@@ -147,7 +147,8 @@ li a:hover:not(.current) {
 	<h1 id="navigation">영화 예매 및 리뷰 작성</h1>
 	<!-- 네비게이션 바 -->
 	<ul id="navigation">
-		<li><a href="Main.jsp"><img src="\Image\home.png"></a></li>
+		<li><a href="Main.jsp"><img
+				src="src/main/webapp/Image/home.png"></a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
 		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>
@@ -198,8 +199,6 @@ li a:hover:not(.current) {
 	<c:forEach var="m" items="${moviesReservation}">
 		<li style="list-style-type: none;"><a id="myLink"
 			class="booking-button">영화예매</a></li>
-	</c:forEach>
-	<c:forEach var="m" items="${Reservation}">
 		<li style="list-style-type: none;"><a href="#" id="del"
 			class="booking-button">영화예매취소</a></li>
 	</c:forEach>
@@ -286,15 +285,67 @@ li a:hover:not(.current) {
 				maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
 			});
 		});
+		
+		function attachMovieLinkListeners() {
+		    var movieLinks = document.getElementsByClassName("movie-link");
 
-		document.getElementById("del").onclick = function() {
-			// 네비게이션 바, 제목을 제외한 나머지 요소를 제거합니다.
-			var elementsToRemove = document
-					.querySelectorAll('body > :not(#navigation)');
-			elementsToRemove.forEach(function(element) {
-				element.style.display = "none";
-			});
+		    Array.from(movieLinks).forEach(function(link) {
+		        link.addEventListener("click", function() {
+		            var title = this.getAttribute("data-title");
+		            var genre = this.getAttribute("data-genre");
+		            var age = this.getAttribute("data-age");
+
+		            var confirmation = confirm("영화 제목: " + title + "\n장르: " + genre + "\n제한 연령: " + age + "세 이상\n\n삭제하시겠습니까?");
+
+		            if (confirmation) {
+		                // 삭제 처리를 수행하는 함수를 호출하거나 여기에 삭제 로직을 추가합니다.
+		                // 예를 들면, deleteMovie(title) 같은 함수를 호출하여 영화를 삭제합니다.
+		                // deleteMovie(title);
+		            }
+		        });
+		    });
 		}
+		
+		function generateMovieList() {
+			var movieListElement = document.getElementById("movieList");
+		    movieListElement.innerHTML = ""; // 기존의 영화 목록을 초기화합니다.
+
+		    var moviesReservation = [
+		        { movietitle: "영화 제목 1", genre: "장르 1", age: "15" },
+		        { movietitle: "영화 제목 2", genre: "장르 2", age: "12" },
+		        { movietitle: "영화 제목 3", genre: "장르 3", age: "19" }
+		    ];
+
+		    moviesReservation.forEach(function(m) {
+		        var listItem = document.createElement("li");
+		        listItem.className = "list-group-item list-group-item-action d-flex justify-content-between align-items-center";
+
+		        var link = document.createElement("a");
+		        link.className = "movie-link";
+		        link.setAttribute("data-title", m.movietitle);
+		        link.setAttribute("data-genre", m.genre);
+		        link.setAttribute("data-age", m.age);
+		        link.textContent = "영화제목: " + m.movietitle + " 영화장르: " + m.genre + " 제한연령: " + m.age + "이상";
+
+		        listItem.appendChild(link);
+		        movieListElement.appendChild(listItem);
+		    });
+		    
+		 	// 새로운 영화 링크에 이벤트 리스너를 추가합니다.
+		    attachMovieLinkListeners();
+		}
+
+		document.getElementById("del").addEventListener("click", function() {
+		    var elementsToRemove = document.querySelectorAll('body > :not(#navigation)');
+		    elementsToRemove.forEach(function(element) {
+		        element.style.display = "none";
+		    });
+		    
+		    var movieListElement = document.getElementById("movieList");
+		    movieListElement.style.display = "block"; // 영화 목록을 다시 보이도록 설정합니다.
+
+		    generateMovieList();
+		});
 	</script>
 </body>
 </html>

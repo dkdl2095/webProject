@@ -65,7 +65,23 @@ li a:hover:not(.current) {
 		<li><a href="Review.jsp">평점</a></li>
 		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>
 	</ul>
-	
+	<!-- 리뷰 목록 -->
+	<h3>리뷰 목록</h3>
+	<ul id="movieList">
+		<c:forEach var="m" items="${moviesSelect}">
+			<li
+				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
+				<div class="card" style="width: 18rem">
+					<img src="${m.photo}" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">${m.movietitle}</h5>
+						<p class="card-text">개봉일:${m.opendate}</p>
+							<p class="card-text">${m.genre}</p>
+					</div>
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
 	<li style="list-style-type: none;"><a href="Review.html"
 		class="booking-button">리뷰작성</a></li>
 </body>

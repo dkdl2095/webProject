@@ -51,6 +51,7 @@
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
 		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>
+		<li><a href="Login.jsp">로그인</a></li>
 	</ul>
 	
 	<!-- 영화 정보 표시 -->

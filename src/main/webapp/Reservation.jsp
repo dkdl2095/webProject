@@ -198,21 +198,9 @@ li a:hover:not(.current) {
 	<div id="selectedSeatsDiv" style="display: none"></div>
 	<li style="list-style-type: none;"><a id="myLink"
 		class="booking-button">영화예매</a></li>
-	<li style="list-style-type: none;"><a href="#" id="del"
-		class="booking-button">영화예매취소</a></li>
-		
-	<!-- 영화 예매 취소 -->
-	<h3>영화 예매 취소</h3>
-	<ul id="movieList">
-		<c:forEach var="m" items="${moviesReservation}">
-			<li
-				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
-				<a class="movie-link" data-title="${m.movietitle}"
-				data-genre="${m.genre}" data-age="${m.age}">영화제목:
-					${m.movietitle} 영화장르: ${m.genre} 제한연령: ${m.age}이상</a>
-			</li>
-		</c:forEach>
-	</ul>
+	<li style="list-style-type: none;"><a
+		href="movieControl?action=listReservation" id="del"
+		class="booking-button">영화 예매취소 하러가기</a></li>
 	<script>
 		// 영화 목록을 동적으로 생성하여 HTML에 추가
 		var movieListElement = document.getElementById("movieList");
@@ -253,12 +241,12 @@ li a:hover:not(.current) {
 
 			// 선택된 좌석 정보를 가져옵니다.
 			var selectedSeatsDiv = document.getElementById("selectedSeatsDiv").textContent;
-
-			// 콘솔에 값을 출력합니다.
-			console.log("선택된 영화: " + selectedMovie);
-			console.log("선택된 날짜는 " + formattedDate + "입니다.");
-			console.log("선택된 시간은 " + inputValue + "입니다.");
-			console.log("선택된 좌석: " + selectedSeatsDiv);
+			
+			// 알림창으로 출력
+			alert("선택된 영화: " + selectedMovie + "\n"
+			+ "선택된 날짜는 " + formattedDate + "입니다." + "\n"
+			+ "선택된 시간은 " + inputValue + "입니다." + "\n"
+			+ "선택된 좌석: " + selectedSeatsDiv);
 
 			var url = "movieControl?action=addReservation&movietitle="
 					+ selectedMovie + "&rdate=" + formattedDate + "&time="
@@ -296,16 +284,6 @@ li a:hover:not(.current) {
 				maxDate : "+1M", // 1달 이내의 날짜만 선택 가능
 			});
 		});
-
-		document.getElementById("del").addEventListener(
-				"click",
-				function() {
-					var elementsToRemove = document
-							.querySelectorAll('body > :not(#navigation)');
-					elementsToRemove.forEach(function(element) {
-						element.style.display = "none";
-					});
-				});
 	</script>
 </body>
 </html>

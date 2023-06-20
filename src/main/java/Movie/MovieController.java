@@ -94,6 +94,19 @@ public class MovieController extends HttpServlet {
 		return "Reservation.jsp";
 	}
 	
+	public String listReservation(HttpServletRequest request) {
+		List<Reservation> list;
+		try {
+			list = dao.getReservationAll();
+			request.setAttribute("Reservation", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("목록 생성 과정에서 문제 발생!!");
+			request.setAttribute("error", "목록이 정상적으로 처리되지 않았습니다!!");
+		}
+		return "ReservationDel.jsp";
+	}
+	
 	public String listMoviesSelect(HttpServletRequest request) {
 		String title = request.getParameter("movietitle");
 		List<Movie> list;
@@ -181,7 +194,7 @@ public class MovieController extends HttpServlet {
 			request.setAttribute("error", "정상적으로 삭제되지 않았습니다!!");
 			return listMoviesReservation(request);
 		}
-		return "redirect:/movieControl?action=listMoviesReservation";
+		return "redirect:/movieControl?action=listReservation";
 	}
 	
 	private String getFilename(Part part) {

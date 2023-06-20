@@ -8,7 +8,7 @@
 <title>5조</title>
 <style>
 ul {
-	background-color: #FFDAB9;
+	background-color: #81D4FA;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -21,7 +21,7 @@ li {
 
 li a {
 	display: block;
-	background-color: #FFDAB9;
+	background-color: #81D4FA;
 	color: #000000;
 	padding: 8px;
 	text-decoration: none;
@@ -30,27 +30,54 @@ li a {
 }
 
 li a.current {
-	background-color: #FF6347;
+	background-color: #81D4FA;
 	color: white;
 }
 
 li a:hover:not(.current) {
-	background-color: #CD853F;
+	background-color: #81D4FA;
 	color: white;
+}
+
+.img_wrap {
+	position: relative;
+	width: 300px;
+	height: 347px;
+	overflow: hidden;
+}
+
+.img_wrap img {
+	margin-top: 4px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transform: scale(1.0);
+	transition: transform 0.5s;
+}
+
+.img_wrap:hover img {
+	transform: scale(1.1);
+	z-index: 1;
+}
+
+body {
+  background-color: #E1F5FE;
 }
 
 #selecteReservation, #back{
 	display: inline-block;
 	padding: 8px 16px;
-	background-color: #FF6347;
-	color: white;
+	background-color: #81D4FA;
+	color: #000000;
 	text-decoration: none;
 	border-radius: 4px;
 	transition: background-color 0.3s;
 }
 
 #selecteReservation:hover, #back:hover {
-	background-color: #CD5C3F;
+	background-color: #81D4FA;
+	color: #000000;
 }
 </style>
 </head>

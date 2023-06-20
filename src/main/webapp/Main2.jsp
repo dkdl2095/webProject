@@ -66,6 +66,7 @@ li a:hover:not(.current) {
 body {
   background-color: #E1F5FE;
 }
+
 </style>
 </head>
 <body>
@@ -77,16 +78,7 @@ body {
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="MovieSelect.jsp">영화조회</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Review.jsp">평점</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="movieControl?action=listMoviesReservation">영화예매</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Login.jsp">로그인</a>
+          <a class="nav-link active" href="MovieSelect2.jsp">영화조회</a>
         </li>
       </ul>
     </div>

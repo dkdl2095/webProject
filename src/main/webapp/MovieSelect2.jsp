@@ -76,8 +76,6 @@ body {
 	<ul id="navigation">
 		<li><a href="movieControl?action=listMoviesMain"><img src="./Image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
-		<li><a href="Review.jsp">평점</a></li>
-		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>
 	</ul>
 	<!-- 영화 검색 -->
 	<div>
@@ -96,21 +94,23 @@ body {
 		}
 	</script>
 	<!-- 영화 검색 결과 -->
-	<h4>영화 검색 결과</h4>
-	<ul id="movieList">
-		<c:forEach var="m" items="${moviesSelect}">
-			<li
-				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
-				<div class="card" style="width: 18rem">
-					<img src="${m.photo}" class="card-img-top">
-					<div class="card-body">
-						<h5 class="card-title">${m.movietitle}</h5>
-						<p class="card-text"><strong>개봉일 :${m.opendate}</strong></p>
-							<p class="card-text"><strong>${m.genre}</strong></p>
-					</div>
-				</div>
-			</li>
-		</c:forEach>
-	</ul>
+<h4>영화 검색 결과</h4>
+<ul id="movieList">
+  <c:forEach var="m" items="${moviesSelect}">
+    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      <div class="card" style="width: 18rem">
+        <a href="correction.jsp?movieId=${m.movieId}">
+          <img src="${m.photo}" class="card-img-top">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">${m.movietitle}</h5>
+          <p class="card-text"><strong>개봉일: ${m.opendate}</strong></p>
+          <p class="card-text"><strong>${m.genre}</strong></p>
+        </div>
+      </div>
+    </li>
+  </c:forEach>
+</ul>
+
 </body>
 </html>

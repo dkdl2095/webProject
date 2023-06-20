@@ -7,7 +7,7 @@
 <title>5조</title>
 <style>
 ul {
-	background-color: #FFDAB9;
+	background-color: #81D4FA;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -20,7 +20,7 @@ li {
 
 li a {
 	display: block;
-	background-color: #FFDAB9;
+	background-color: #81D4FA;
 	color: #000000;
 	padding: 8px;
 	text-decoration: none;
@@ -29,16 +29,17 @@ li a {
 }
 
 li a.current {
-	background-color: #FF6347;
+	background-color: #FFFFFF;
 	color: white;
 }
 
 li a:hover:not(.current) {
-	background-color: #CD853F;
+	background-color: #FFFFFF;
 	color: white;
 }
 
 .search-button {
+	margin-top: 10px;
 	display: inline-block;
 	padding: 10px 20px;
 	background-color: #007bff;
@@ -52,22 +53,27 @@ li a:hover:not(.current) {
 .search-button:hover {
 	background-color: #0056b3;
 }
+
+body {
+	margin: 0px;
+  background-color: #E1F5FE;
+}
+
 </style>
 <link rel="stylesheet" href="./Review.css" />
 <script type="text/javascript" src="./Review.js"></script>
 </head>
 <body>
-	<h1>영화 예매 및 리뷰 작성</h1>
 	<!-- 네비게이션 바 -->
 	<ul id="navigation">
-		<li><a href="movieControl?action=listMoviesMain"><img src="./Image/5wh.png" style="width: 25px; height: 25px;"></a></li>
+		<li><a href="movieControl?action=listMoviesMain"><img src="./Image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
 		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>
 	</ul>
 	<!-- 리뷰 목록 -->
 	<h3>리뷰 목록</h3>
-	<ul id="movieList">
+	<ul id="movieList" style= "background-color: #FFFFFF;">
 		<c:forEach var="m" items="${moviesSelect}">
 			<li
 				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">

@@ -23,7 +23,7 @@
 <title>5조</title>
 <style>
 ul {
-	background-color: #FFDAB9;
+	background-color: #81D4FA;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -36,7 +36,7 @@ li {
 
 li a {
 	display: block;
-	background-color: #FFDAB9;
+	background-color: #81D4FA;
 	color: #000000;
 	padding: 8px;
 	text-decoration: none;
@@ -45,13 +45,39 @@ li a {
 }
 
 li a.current {
-	background-color: #FF6347;
+	background-color: #81D4FA;
 	color: white;
 }
 
 li a:hover:not(.current) {
-	background-color: #CD853F;
+	background-color: #81D4FA;
 	color: white;
+}
+
+.img_wrap {
+	position: relative;
+	width: 300px;
+	height: 347px;
+	overflow: hidden;
+}
+
+.img_wrap img {
+	margin-top: 4px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transform: scale(1.0);
+	transition: transform 0.5s;
+}
+
+.img_wrap:hover img {
+	transform: scale(1.1);
+	z-index: 1;
+}
+
+body {
+  background-color: #E1F5FE;
 }
 
 /* 캘린더 스타일 */
@@ -65,8 +91,8 @@ li a:hover:not(.current) {
 }
 
 .ui-datepicker-header {
-	background-color: #333;
-	color: #fff;
+	background-color: #81D4FA;
+	color: white;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
@@ -78,18 +104,20 @@ li a:hover:not(.current) {
 
 .ui-datepicker-prev, .ui-datepicker-next {
 	cursor: pointer;
-	background-color: #666;
-	color: #fff;
+	background-color: #81D4FA;
+	color: white;
 	padding: 2px 5px;
 	border-radius: 5px;
 }
 
 .ui-datepicker-prev:hover, .ui-datepicker-next:hover {
-	background-color: #888;
+	background-color: #81D4FA;
+	color: white;
 }
 
 .ui-datepicker-calendar {
-	background-color: #fff;
+	background-color: #81D4FA;
+	color: white;
 }
 
 .ui-datepicker-calendar td {
@@ -101,7 +129,8 @@ li a:hover:not(.current) {
 }
 
 .ui-datepicker-calendar .ui-state-default:hover {
-	background-color: #f5f5f5;
+	background-color: #81D4FA;
+	color: white;
 }
 
 .time-input {
@@ -114,8 +143,8 @@ li a:hover:not(.current) {
 .booking-button {
 	display: inline-block;
 	padding: 10px 20px;
-	background-color: #f44336;
-	color: white;
+	background-color: #81D4FA;
+	color: #000000;
 	font-weight: bold;
 	border: none;
 	border-radius: 5px;
@@ -144,7 +173,6 @@ li a:hover:not(.current) {
 </style>
 </head>
 <body>
-	<h1 id="navigation">영화 예매 및 리뷰 작성</h1>
 	<!-- 네비게이션 바 -->
 	<ul id="navigation">
 		<li><a href="movieControl?action=listMoviesMain"><img

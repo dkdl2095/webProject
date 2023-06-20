@@ -200,6 +200,19 @@ li a:hover:not(.current) {
 		class="booking-button">영화예매</a></li>
 	<li style="list-style-type: none;"><a href="#" id="del"
 		class="booking-button">영화예매취소</a></li>
+		
+	<!-- 영화 예매 취소 -->
+	<h3>영화 예매 취소</h3>
+	<ul id="movieList">
+		<c:forEach var="m" items="${moviesReservation}">
+			<li
+				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
+				<a class="movie-link" data-title="${m.movietitle}"
+				data-genre="${m.genre}" data-age="${m.age}">영화제목:
+					${m.movietitle} 영화장르: ${m.genre} 제한연령: ${m.age}이상</a>
+			</li>
+		</c:forEach>
+	</ul>
 	<script>
 		// 영화 목록을 동적으로 생성하여 HTML에 추가
 		var movieListElement = document.getElementById("movieList");

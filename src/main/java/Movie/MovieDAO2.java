@@ -71,27 +71,4 @@ public class MovieDAO2 {
 			return moviesList;
 		}
 	}
-	
-	public Movie getMoviTitle(String title) throws SQLException {
-		Connection conn = open();
-		Movie m = new Movie();
-
-		// sql 문
-		String sql = "SELECT id, movietitle, PARSEDATETIME(opendate,'yyyy-MM-dd') as opendate, genre, age, photo from movie where movietitle =?";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, title);
-		ResultSet rs = pstmt.executeQuery();
-
-		rs.next();
-		try (conn; pstmt; rs) {
-			m.setId(rs.getInt("id"));
-			m.setMovietitle(rs.getString("movietitle"));
-			m.setOpendate(rs.getDate("opendate"));
-			m.setGenre(rs.getString("genre"));
-			m.setAge(rs.getInt("age"));
-			m.setPhoto(rs.getString("photo"));
-			pstmt.executeQuery();
-			return m;
-		}
-	}
 }

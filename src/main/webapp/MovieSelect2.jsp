@@ -99,7 +99,7 @@ body {
   <c:forEach var="m" items="${moviesSelect}">
     <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
       <div class="card" style="width: 18rem">
-        <a href="MovieController2?action=listMoviesSelect2?movietitle=${m.movietitle}">
+        <a href="MovieController2?action=listMoviesSelect2?movieId=${m.id}">
           <img src="${m.photo}" class="card-img-top">
         </a>
         <div class="card-body">

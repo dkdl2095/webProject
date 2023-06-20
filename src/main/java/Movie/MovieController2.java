@@ -83,9 +83,10 @@ public class MovieController2 extends HttpServlet {
 
 	public String listMoviesSelect2(HttpServletRequest request) {
 		String title = request.getParameter("movietitle");
+		List<Movie> list;
 		try {
-			Movie m = dao.getMoviTitle(title);
-			request.setAttribute("moviesSelect", m);
+			list = dao.getMovietitle(title);
+			request.setAttribute("moviesSelect", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 			ctx.log("목록 생성 과정에서 문제 발생!!");

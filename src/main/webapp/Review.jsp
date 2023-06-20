@@ -86,11 +86,10 @@ body {
 			<li
 				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
 				<div class="card" style="width: 18rem">
-					<img src="${m.photo}" class="card-img-top">
 					<div class="card-body">
-						<h5 class="card-title">${m.movietitle}</h5>
-						<p class="card-text">개봉일:${m.opendate}</p>
-							<p class="card-text">${m.genre}</p>
+						<h5 class="card-title">${m.reviewtitle}</h5>
+						<p class="card-text">${m.reviewtext}</p>
+							<p class="card-text">${m.star}</p>
 					</div>
 				</div>
 			</li>

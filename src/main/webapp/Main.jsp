@@ -64,34 +64,31 @@ li a:hover:not(.current) {
 }
 
 body {
-  background-color: #E1F5FE;
+	background-color: #E1F5FE;
 }
 </style>
 </head>
 <body>
 	<!-- 네비게이션 바 -->
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" aria-current="page" href="Main.jsp">
-    <img src="./Image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="MovieSelect.jsp">영화조회</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Review.jsp">평점</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="movieControl?action=listMoviesReservation">영화예매</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Login.jsp">로그인</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+	<nav class="navbar navbar-expand-lg bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" aria-current="page" href="Main.jsp"> <img
+				src="./image/5wh.png" alt="Logo" width="30" height="24"
+				class="d-inline-block align-text-top"></a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						href="MovieSelect.jsp">영화조회</a></li>
+					<li class="nav-item"><a class="nav-link" href="Review.jsp">평점</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="movieControl?action=listMoviesReservation">영화예매</a></li>
+					<li class="nav-item"><a class="nav-link" href="Login.jsp">로그인</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 	<!-- 영화 정보 표시 -->
 	<!-- 1번 영화 -->
@@ -103,15 +100,16 @@ body {
 				<img
 					src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000087/87090/87090_320.jpg"
 					alt="플래시" onerror="errorImage(this)">
-				<div class="movieAgeLimit_wrap">
-				</div>
-				<div class="screenType_wrap">
-				</div>
+				<div class="movieAgeLimit_wrap"></div>
+				<div class="screenType_wrap"></div>
 			</div>
 			<div class="movie_info_wrap">
-				<strong class="movieName">플래시</strong> <hr><span><img
+				<strong class="movieName">플래시</strong>
+				<hr>
+				<span><img
 					src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
-					alt="Golden Egg great"> 94%</span> <p>예매율 27.1%</p>
+					alt="Golden Egg great"> 94%</span>
+				<p>예매율 27.1%</p>
 			</div>
 		</div>
 		<!-- 2번 영화 -->
@@ -121,14 +119,16 @@ body {
 				<img
 					src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000087/87045/87045_320.jpg"
 					alt="범죄도시3" onerror="errorImage(this)">
-				<div class="movieAgeLimit_wrap">
-				</div>
+				<div class="movieAgeLimit_wrap"></div>
 				<div class="screenType_wrap"></div>
 			</div>
 			<div class="movie_info_wrap">
-				<strong class="movieName">범죄도시3</strong> <hr><span><img
+				<strong class="movieName">범죄도시3</strong>
+				<hr>
+				<span><img
 					src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
-					alt="Golden Egg great"> 94%</span> <p>예매율 19.1%</p>
+					alt="Golden Egg great"> 94%</span>
+				<p>예매율 19.1%</p>
 			</div>
 		</div>
 		<!-- 3번 영화 -->
@@ -138,17 +138,17 @@ body {
 				<img
 					src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000087/87034/87034_320.jpg"
 					alt="엘리멘탈" onerror="errorImage(this)">
-				<div class="movieAgeLimit_wrap">
-				</div>
-				<div class="screenType_wrap">
-					
-				</div>
+				<div class="movieAgeLimit_wrap"></div>
+				<div class="screenType_wrap"></div>
 			</div>
 			<div class="movie_info_wrap">
-				<strong class="movieName">엘리멘탈</strong> <hr><span> <img
+				<strong class="movieName">엘리멘탈</strong>
+				<hr>
+				<span> <img
 					src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldenegggreat.png"
 					alt="Golden Egg great"> 98%
-				</span> <p>예매율 18.6%</p>
+				</span>
+				<p>예매율 18.6%</p>
 			</div>
 		</div>
 		<!-- 4번 영화 -->
@@ -158,14 +158,16 @@ body {
 				<img
 					src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000087/87095/87095_320.jpg"
 					alt="귀공자" onerror="errorImage(this)">
-				<div class="movieAgeLimit_wrap">
-				</div>
+				<div class="movieAgeLimit_wrap"></div>
 				<div class="screenType_wrap"></div>
 			</div>
 			<div class="movie_info_wrap">
-				<strong class="movieName">귀공자</strong><hr> <span><img
+				<strong class="movieName">귀공자</strong>
+				<hr>
+				<span><img
 					src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldeneggPreegg.png"
-					alt="Golden Egg Preegg">97%</span> <p>예매율 10.4%</p>
+					alt="Golden Egg Preegg">97%</span>
+				<p>예매율 10.4%</p>
 			</div>
 		</div>
 		<!-- 5번 영화 -->
@@ -175,16 +177,16 @@ body {
 				<img
 					src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000087/87106/87106_320.jpg"
 					alt="스파이더맨-어크로스 더 유니버스" onerror="errorImage(this)">
-				<div class="movieAgeLimit_wrap">
-				</div>
-				<div class="screenType_wrap">
-				
-				</div>
+				<div class="movieAgeLimit_wrap"></div>
+				<div class="screenType_wrap"></div>
 			</div>
 			<div class="movie_info_wrap">
-				<strong class="movieName">스파이더맨-어크로스 더 유니버스</strong><hr> <span><img
+				<strong class="movieName">스파이더맨-어크로스 더 유니버스</strong>
+				<hr>
+				<span><img
 					src="https://img.cgv.co.kr/R2014/images/common/egg/eggGoldeneggPreegg.png"
-					alt="Golden Egg Preegg">99%</span> <p>예매율 9.4%</p>
+					alt="Golden Egg Preegg">99%</span>
+				<p>예매율 9.4%</p>
 			</div>
 		</div>
 	</div>

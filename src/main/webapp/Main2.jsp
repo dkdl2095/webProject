@@ -74,7 +74,7 @@ body {
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" aria-current="page" href="Main.jsp">
-    <img src="./Image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a>
+    <img src="./image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">

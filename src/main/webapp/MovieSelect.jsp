@@ -74,7 +74,7 @@ body {
 <body>
 	<!-- 네비게이션 바 -->
 	<ul id="navigation">
-		<li><a href="movieControl?action=listMoviesMain"><img src="./Image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a></li>
+		<li><a href="movieControl?action=listMoviesMain"><img src="./image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
 		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>

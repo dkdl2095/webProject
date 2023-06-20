@@ -148,7 +148,7 @@ li a:hover:not(.current) {
 	<!-- 네비게이션 바 -->
 	<ul id="navigation">
 		<li><a href="movieControl?action=listMoviesMain"><img
-				src="./Image/home.png" style="width: 25px; height: 25px;"></a></li>
+				src="./Image/5wh.png" style="width: 25px; height: 25px;"></a></li>
 		<li><a href="MovieSelect.jsp">영화조회</a></li>
 		<li><a href="Review.jsp">평점</a></li>
 		<li><a href="movieControl?action=listMoviesReservation">영화예매</a></li>

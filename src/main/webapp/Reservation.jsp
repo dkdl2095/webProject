@@ -189,7 +189,7 @@ body {
 				class="list-group-item list-group-item-action d-flex justify-content-betwwen align-items-center">
 				<a class="movie-link" data-title="${m.movietitle}"
 				data-genre="${m.genre}" data-age="${m.age}">영화제목:
-					${m.movietitle} 영화장르: ${m.genre} 제한연령: ${m.age}이상</a>
+					${m.movietitle} 영화장르: ${m.genre} 제한연령: ${m.age}세 이상</a>
 			</li>
 		</c:forEach>
 	</ul>
@@ -249,7 +249,7 @@ body {
 				var genre = event.target.dataset.genre;
 				var age = event.target.dataset.age;
 				selectedMovieElement.textContent = "영화제목: " + title + " 영화장르: "
-						+ genre + " 제한연령: " + age + "이상";
+						+ genre + " 제한연령: " + age + "세 이상";
 			});
 		});
 

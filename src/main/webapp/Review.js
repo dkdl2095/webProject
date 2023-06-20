@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function(){
                + selectedMovie + "&rdate=" + formattedDate + "&time="
                + inputValue + "&seat=" + selectedSeatsDiv;
         location.href = url;
+        
+        window.location.href = "Review.jsp";
     });
 });
 

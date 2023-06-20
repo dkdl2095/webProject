@@ -74,8 +74,8 @@ body {
 <body>
 	<!-- 네비게이션 바 -->
 	<ul id="navigation">
-		<li><a href="movieControl?action=listMoviesMain"><img src="./image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a></li>
-		<li><a href="MovieSelect.jsp">영화조회</a></li>
+		<li><a href="MovieController2?action=listMoviesMain"><img src="./image/5wh.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a></li>
+		<li><a href="MovieSelect2.jsp">영화조회</a></li>
 	</ul>
 	<!-- 영화 검색 -->
 	<div>
@@ -88,7 +88,7 @@ body {
 	<script>
 		function generateURL() {
 			var movietitle = document.getElementById("movietitle").value;
-			var url = "movieControl?action=listMoviesSelect&movietitle="
+			var url = "MovieController2?action=listMoviesSelect2&movietitle="
 					+ encodeURIComponent(movietitle);
 			location.href = url;
 		}
@@ -99,7 +99,7 @@ body {
   <c:forEach var="m" items="${moviesSelect}">
     <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
       <div class="card" style="width: 18rem">
-        <a href="correction.jsp?movieId=${m.movieId}">
+        <a href="MovieController2?action=listMoviesSelect2?movietitle=${m.movietitle}">
           <img src="${m.photo}" class="card-img-top">
         </a>
         <div class="card-body">

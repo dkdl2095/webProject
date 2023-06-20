@@ -102,7 +102,7 @@ body {
 		</c:forEach>
 	</ul>
 	<a id="selecteReservation">확인</a>
-	<a href="javascript:history.back()" id="back">뒤로가기</a>
+	<a href="Reservation.jsp" id="back">뒤로가기</a>
 	<script>
 		// 영화 목록을 동적으로 생성하여 HTML에 추가
 		var movieListElement = document.getElementById("ReservationList");

@@ -29,36 +29,44 @@ li a {
 }
 
 li a.current {
-	background-color: #FFFFFF;
+	background-color: #81D4FA;
 	color: white;
 }
 
 li a:hover:not(.current) {
-	background-color: #FFFFFF;
+	background-color: #81D4FA;
 	color: white;
 }
 
-.search-button {
-	margin-top: 10px;
-	display: inline-block;
-	padding: 10px 20px;
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	text-decoration: none;
-	border-radius: 4px;
-	cursor: pointer;
+.img_wrap {
+	position: relative;
+	width: 300px;
+	height: 347px;
+	overflow: hidden;
 }
 
-.search-button:hover {
-	background-color: #0056b3;
+.img_wrap img {
+	margin-top: 4px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transform: scale(1.0);
+	transition: transform 0.5s;
+}
+
+.img_wrap:hover img {
+	transform: scale(1.1);
+	z-index: 1;
 }
 
 body {
-	margin: 0px;
-  background-color: #E1F5FE;
+	background-color: #E1F5FE;
 }
 
+.search-button:hover {
+	background-color: #E1F5FE;
+}
 </style>
 <link rel="stylesheet" href="./Review.css" />
 <script type="text/javascript" src="./Review.js"></script>
